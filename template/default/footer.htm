@@ -1,0 +1,38 @@
+<div class="m">
+	<div class="b10">&nbsp;</div>
+	<div class="foot_search">
+		<div class="foot_search_m" id="foot_search_m">
+		{loop $MODULE $m}{if $m[ismenu] && !$m[islink]}<span id="foot_search_m_{$m[moduleid]}" onclick="setFModule({$m[moduleid]})" class="{if $m[moduleid]==$searchid}f_b{else}{/if}">{$m[name]}</span> | {/if}{/loop}
+		</div>
+		<div>
+		<form id="foot_search" action="{DT_PATH}search.php" onsubmit="return Fsearch();">
+		<input type="hidden" name="moduleid" value="{$searchid}" id="foot_moduleid"/>
+		<input type="text" name="kw" class="foot_search_i" id="foot_kw" value="{if $kw}{$kw}{else}请输入关键词{/if}" onfocus="if(this.value=='请输入关键词') this.value='';"/>&nbsp;&nbsp;
+		<input type="submit" class="foot_search_s" id="foot_search_s" value="搜索"/>
+		</form>
+		</div>
+	</div>
+	<div class="b10">&nbsp;</div>
+</div>
+<div class="m">
+	<div class="foot">
+		<div>
+		<a href="{DT_PATH}">网站首页</a>
+		<!--{tag("table=webpage&condition=item=1&order=listorder desc,itemid desc&template=list-webpage")}-->
+		| <a href="{DT_PATH}sitemap/">网站地图</a>
+		{if extend_setting('link_enable')} | <a href="{extendurl('link')}">友情链接</a>{/if}
+		{if extend_setting('guestbook_enable')} | <a href="{extendurl('guestbook')}">网站留言</a>{/if}
+		{if extend_setting('ad_enable')} | <a href="{extendurl('ad')}">广告服务</a>{/if}
+		{if $DT[icpno]}
+		| <a href="http://www.miibeian.gov.cn" target="_blank">{$DT[icpno]}</a>
+		{/if}
+		</div>
+		{$DT[copyright]}<br/><span id="powered"><a href="http://www.destoon.com" target="_blank"><strong>Powered by Destoon {DT_VERSION}</strong></a></span>
+	</div>
+</div>
+<script type="text/javascript">
+	document.write('<script type="text/javascript" src="{DT_PATH}api/task.js.php?{$destoon_task}&refresh='+Math.random()+'.js"></sc'+'ript>');
+</script>
+{template 'stats', 'chip'}
+</body>
+</html>
